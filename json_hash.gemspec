@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
 
   spec.name        = "json_hash"
-  spec.version     = "0.0.1"
+  spec.version     = "0.0.2"
   spec.date        = "2015-01-31"
   spec.summary     = "Hola!"
   spec.description = "A simple gem that adds method-like syntactic sugar to a JSON hash."
