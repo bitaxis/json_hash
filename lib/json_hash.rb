@@ -1,4 +1,5 @@
 require "json"
+require "open-uri"
 
 ##
 # Provides syntactic sugar to a JSON structure.
@@ -9,7 +10,7 @@ class JSONHash
 
   ##
   # Initializer.  The json parameter is a Ruby hash.  Usually you would call JSON.parse to get such a hash.
-  # @param json [Hash] A regular Ruby hash, usually obtained by calling JSON.parse or HTTP GET on a .json endpoint.
+  # @param json [Hash] A Ruby hash, usually obtained by calling JSON.parse or HTTP GET on a .json endpoint.
 
   def initialize(json)
     @json = json
@@ -34,6 +35,7 @@ class JSONHash
 
   ##
   # Returns the underling JSON parsed hash structure.
+  # @return [JSON] Underlying JSON object.
 
   def to_json
     @json
@@ -41,9 +43,25 @@ class JSONHash
 
   ##
   # Return a string representation of the JSON parsed hash structure.
+  # @return [String] String representation of the underlying JSON object.
 
   def to_s
     @json.to_s
+  end
+
+  ##
+  # Build an array of JSONHash objects if the argument is an array of Hash instances.  If the argument is an URI,
+  # then parse the URI contents with JSON.parse, and then build it.  If the argument is a string, then parse it
+  # using JSON.parse first, then try to parse it again.  Otherwise, assume it's a single Hash object and build
+  # just a single JSONHash object.
+  # @param from [Array, Hash, String, URI] Object to build from.
+  # @return [Array, JSONHash] Either an array of JSONHash objects or a single JSONHash object.
+
+  def self.parse(from)
+    return from.collect { |item| parse(item) } if from.class == Array
+    return parse(JSON.parse(open(from) { |fp| fp.read })) if from.is_a? URI::Generic
+    return parse(JSON.parse(from)) if from.class == String
+    JSONHash.new(from)
   end
 
 end
