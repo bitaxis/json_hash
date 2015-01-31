@@ -16,13 +16,24 @@ Otherwise, just type:
 
 The canonical usage is to obtain some JSON text from a remote endpoint, and parse it.  For example:
 
-    require "json_hash"
-    user = JSONHash.parse("http://example.org/users/1.json")
-    puts user.id # outputs 1
+```ruby
+require "json_hash"
+ => true
+user = JSONHash.parse("http://example.org/users/1.json")
+ => #<JSONHash:0x007fe0d320fd30 @json={"id"=>1, ...}
+user.id
+ => 1 
+users = JSONHash.parse("http://cumulus.local/identity-manager/users.json")
+ => [#<JSONHash:0x007fe0d322c368 @json={"id"=>1, ...}, ...]
+users.count
+ => 4 
+users[1].id
+ => 2 
+```
 
 ## Requirements
 
-The json_hash gem relies on the following
+The json_hash gem relies on the following:
 
 * The json gem
 * The open-uri module
