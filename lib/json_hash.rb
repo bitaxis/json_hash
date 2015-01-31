@@ -1,5 +1,6 @@
 require "json"
 require "open-uri"
+require "uri"
 
 ##
 # Provides syntactic sugar to a JSON structure.
@@ -58,10 +59,12 @@ class JSONHash
   # @return [Array, JSONHash] Either an array of JSONHash objects or a single JSONHash object.
 
   def self.parse(from)
+    return JSONHash.new(from) if from.class == Hash
     return from.collect { |item| parse(item) } if from.class == Array
     return parse(JSON.parse(open(from) { |fp| fp.read })) if from.is_a? URI::Generic
-    return parse(JSON.parse(from)) if from.class == String
-    JSONHash.new(from)
+    # Assume from is String from here on
+    return parse(URI.parse(from)) if /^http[s]?:\/\/.+/ =~ from
+    return parse(JSON.parse(from))
   end
 
 end

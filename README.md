@@ -14,4 +14,21 @@ Otherwise, just type:
 
 ## Usage
 
-...
+The canonical usage is to obtain some JSON text from a remote endpoint, and parse it.  For example:
+
+    require "json_hash"
+    jh = JSONHash.parse("http://example.org/users/1.json")
+    puts jh.id # outputs 1
+
+## Requirements
+
+The json_hash gem relies on the following
+
+* The json gem
+* The open-uri module
+* The uri module
+
+## Credits
+
+This was inspired by a similar class I wrote in Python, which made use of setattr() methods.  I wanted to see if I can do
+something similar in Ruby.  Since Ruby doesn't have something like setattr(), I had to rely on method_missing() instead.
