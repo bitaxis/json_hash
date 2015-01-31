@@ -17,8 +17,8 @@ Otherwise, just type:
 The canonical usage is to obtain some JSON text from a remote endpoint, and parse it.  For example:
 
     require "json_hash"
-    jh = JSONHash.parse("http://example.org/users/1.json")
-    puts jh.id # outputs 1
+    user = JSONHash.parse("http://example.org/users/1.json")
+    puts user.id # outputs 1
 
 ## Requirements
 
@@ -30,5 +30,7 @@ The json_hash gem relies on the following
 
 ## Credits
 
-This was inspired by a similar class I wrote in Python, which made use of setattr() methods.  I wanted to see if I can do
-something similar in Ruby.  Since Ruby doesn't have something like setattr(), I had to rely on method_missing() instead.
+This was inspired by a similar class I wrote in Python to parse Jenkin's RESTful API output, which made use of the
+setattr() method.  I wanted to see if I can do something similar in Ruby.
+
+Alas, since Ruby doesn't have something like setattr(), I've had to rely on method_missing() instead.
