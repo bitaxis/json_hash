@@ -23,12 +23,14 @@ user = JSONHash.parse("http://example.org/users/1.json")
  => #<JSONHash:0x007fe0d320fd30 @json={"id"=>1, ...}
 user.id
  => 1 
+user.login
+ => "john_smith" 
 users = JSONHash.parse("http://cumulus.local/identity-manager/users.json")
  => [#<JSONHash:0x007fe0d322c368 @json={"id"=>1, ...}, ...]
 users.count
  => 4 
-users[1].id
- => 2 
+users[1].login
+ => "jane_smith" 
 ```
 
 ## Requirements
