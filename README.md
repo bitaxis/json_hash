@@ -25,7 +25,7 @@ user.id
  => 1 
 user.login
  => "john_smith" 
-users = JSONHash.parse("http://cumulus.local/identity-manager/users.json")
+users = JSONHash.parse("http://example.org/users.json")
  => [#<JSONHash:0x007fe0d322c368 @json={"id"=>1, ...}, ...]
 users.count
  => 4 
