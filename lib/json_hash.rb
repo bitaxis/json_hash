@@ -9,7 +9,7 @@ require "uri"
 
 class JSONHash
 
-  VERSION = "0.0.3"
+  VERSION = "1.0.0"
 
   ##
   # Initializer.  The json parameter is a Ruby hash.  Usually you would call JSON.parse to get such a hash.
