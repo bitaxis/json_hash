@@ -1,6 +1,6 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-require "json_hash/version"
+require "json_hash"
 
 Gem::Specification.new do |spec|
 
@@ -20,5 +20,8 @@ Gem::Specification.new do |spec|
   spec.license     = "MIT"
 
   spec.add_runtime_dependency "json", "~> 1.8", ">= 1.8.2"
+
+  spec.add_development_dependency "byebug", "~> 3.5", ">= 3.5.1"
+  spec.add_development_dependency "yard", "~> 0.8.7", ">= 0.8.7.6"
 
 end

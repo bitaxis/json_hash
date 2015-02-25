@@ -9,6 +9,8 @@ require "uri"
 
 class JSONHash
 
+  VERSION = "0.0.3"
+
   ##
   # Initializer.  The json parameter is a Ruby hash.  Usually you would call JSON.parse to get such a hash.
   # @param json [Hash] A Ruby hash, usually obtained by calling JSON.parse or HTTP GET on a .json endpoint.
@@ -31,7 +33,7 @@ class JSONHash
   # @param args The arguments supplied to the method.
 
   def method_missing(method, *args)
-    @json[method.to_s] || super
+    @json[method.to_s] || @json[method.to_sym] || super
   end
 
   ##
